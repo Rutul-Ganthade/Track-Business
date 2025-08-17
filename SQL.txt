@@ -1,0 +1,89 @@
+-- Create database
+CREATE DATABASE IF NOT EXISTS easybusiness;
+USE easybusiness;
+
+-- Table: users
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Password VARCHAR(100) NOT NULL
+);
+
+-- Table: products
+CREATE TABLE IF NOT EXISTS products (
+    Hsn_code VARCHAR(50) PRIMARY KEY,
+    Product_name VARCHAR(100) NOT NULL,
+    Net_weight VARCHAR(50),
+    Category VARCHAR(100)
+);
+
+-- Table: stock
+CREATE TABLE IF NOT EXISTS stock (
+    Hsn_code VARCHAR(50),
+    Product_name VARCHAR(100),
+    Net_weight VARCHAR(50),
+    Category VARCHAR(100),
+    Unit_price DOUBLE,
+    Quantity INT,
+    Batch_no VARCHAR(100),
+    Expiry_date VARCHAR(100),
+    PRIMARY KEY (Hsn_code, Batch_no)
+);
+
+-- Table: categories
+CREATE TABLE IF NOT EXISTS categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Table: parties
+CREATE TABLE IF NOT EXISTS Parties (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    PartyName VARCHAR(100),
+    PartyGST_In_No VARCHAR(50),
+    PartyLocation VARCHAR(100)
+);
+
+-- Table: bills
+CREATE TABLE IF NOT EXISTS bills (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Invoice_no VARCHAR(50) UNIQUE,
+    Party_name VARCHAR(100),
+    Payment_type VARCHAR(50)
+);
+
+-- Table: bill_items
+CREATE TABLE IF NOT EXISTS bill_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Invoice_no VARCHAR(50),
+    Hsn_code VARCHAR(50),
+    Product_name VARCHAR(100),
+    Net_weight VARCHAR(50),
+    Category VARCHAR(100),
+    Unit_price DOUBLE,
+    Quantity INT,
+    Batch_no VARCHAR(100),
+    Expiry_date VARCHAR(100)
+);
+
+-- Table: sales
+CREATE TABLE IF NOT EXISTS sales (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    InvoiceNo INT,
+    CustomerName VARCHAR(100),
+    Hsn_code VARCHAR(50),
+    Netweight VARCHAR(50),
+    Unit_price DOUBLE,
+    Quantity INT,
+    Final_price DOUBLE
+);
+
+-- Table: sale (used for daily sales record)
+CREATE TABLE IF NOT EXISTS sale (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Date DATE,
+    Hsn_code VARCHAR(50),
+    Company VARCHAR(100),
+    Quantity INT,
+    Payment VARCHAR(50)
+);
