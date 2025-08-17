@@ -1,4 +1,4 @@
-# Easy Business Billing and Stock Management
+# Track Business Billing and Stock Management
 
 ## 📌 About the Project
 This is a fully functional **Billing and Stock Management System** designed for startups, small businesses, and students looking to present it as a **minor or major academic project**.  
